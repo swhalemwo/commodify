@@ -1,0 +1,21 @@
+* download stock prices from EODHD and parse for [[https://ledger-cli.org/][ledger]] [[https://ledger-cli.org/doc/ledger3.html#Commodities-and-Currencies][price db]]
+
+tracking the casino of commodified human labor, i.e. the value of your stock portfolio. 
+
+
+** Setup
+- get an API KEY from https://eodhd.com/
+- create a commodify.R file (see example) which defines
+  - `dt_stock_ids`: a data.table with columns ticker (for EODHD API) and name (commodity name used in ledger file)
+  - the API_KEY
+  - `FILE_EOD_FULL` and `FILE_EOD_PRICEHIST`: where to save the EOD data and ledger price db, respectively
+  - `gd_eod(dt_stock_ids)`: fetches data
+- run this file via `Rscript commodify.R` (add it to cron if you like)
+  
+
+** Limitations
+- the EODHD API is limited to 20 calls a day, each stock requires 1 call, so in the long run it's limited to 20 stocks (would have used [[https://github.com/ranaroussi/yfinance][yfinance]] if I'd known of it before)
+- Exchange XETRA and currency EUR are currently hardcoded
+- only tested on linux
+  
+
