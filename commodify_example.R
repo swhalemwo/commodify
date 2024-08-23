@@ -9,5 +9,5 @@ dt_stock_ids <- list(
     list(isin = "DE000A0H08J9", ticker = "EXH4", name = "STX600")
 ) %>% rbindlist
 
-load("commodify_funcs.R")
+source("/path/to/commodify_funcs.R")
 gd_eod(dt_stock_ids)

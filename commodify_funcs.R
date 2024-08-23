@@ -2,6 +2,7 @@ library(httr)
 library(jsonlite)
 library(purrr)
 library(data.table)
+library(magrittr)
 
 
 gd_eod_ff <- function(FILE_EOD_FULL) {
@@ -21,8 +22,7 @@ gd_eod_ff <- function(FILE_EOD_FULL) {
 }
 
 gd_eod_single <- function(ticker) {
-    if (as.character(match.call()[[1]]) %in% fstd){browser()}
-    1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;
+
     #' get the EOD (end-of-day) data for a stock/ETF
     #' for now uses XETRA
     #' @param ticker the symbol to identify the stock/etf
@@ -34,7 +34,7 @@ gd_eod_single <- function(ticker) {
     if (http_type(response) == "application/json") {
         content <- content(response, "text", encoding = "UTF-8")
         ## cat(content)
-        dt_eod <- fromJSON(content) %>% adt %>%
+        dt_eod <- fromJSON(content) %>% as.data.table %>%
             .[, ticker := ticker] %>%
             .[, date := as.IDate(date)]
 
@@ -48,10 +48,12 @@ gd_eod_single <- function(ticker) {
 
 
 
-gd_eod <- function(dt_stock_ids) {
-    if (as.character(match.call()[[1]]) %in% fstd){browser()}
+gd_eod <- function(df_stock_ids) {
+    ## download and parse stock data 
 
-    #' get existing data from file
+    dt_stock_ids <- as.data.table(df_stock_ids)
+    
+    ## get existing data from file
     dt_eod_full <- gd_eod_ff(FILE_EOD_FULL)
     
     ## get new data from web
