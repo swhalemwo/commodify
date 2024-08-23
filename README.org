@@ -7,7 +7,7 @@ other people have done [[https://plaintextaccounting.org/#data-generation][overa
 
 ** Setup
 - get an API KEY from https://eodhd.com/financial-apis/api-for-historical-data-and-volumes
-- install `httr`, `jsonlite`, `purrr`, `data.table`, `magrittr`
+- install ~httr~, `jsonlite`, `purrr`, `data.table`, `magrittr`
 - create a commodify.R file (see example) which defines
   - `dt_stock_ids`: a data.table with columns `ticker` (for EODHD API) and `name` (commodity name used in ledger file)
   - the API_KEY
