@@ -1,4 +1,4 @@
-* download stock prices from EODHD and parse for [[https://ledger-cli.org/][ledger]] [[https://ledger-cli.org/doc/ledger3.html#Commodities-and-Currencies][price db]]
+* download and parse stock prices for [[https://ledger-cli.org/][ledger]] [[https://ledger-cli.org/doc/ledger3.html#Commodities-and-Currencies][price db]]
 
 tracking the casino of commodified human labor, i.e. the value of your stock portfolio.
 
@@ -7,13 +7,13 @@ other people have done [[https://plaintextaccounting.org/#data-generation][overa
 
 ** Setup
 - get an API KEY from https://eodhd.com/financial-apis/api-for-historical-data-and-volumes
-- install ~httr~, `jsonlite`, `purrr`, `data.table`, `magrittr`
+- install ~httr~, ~jsonlite~, ~purrr~, ~data.table~, ~magrittr~
 - create a commodify.R file (see example) which defines
-  - `dt_stock_ids`: a data.table with columns `ticker` (for EODHD API) and `name` (commodity name used in ledger file)
+  - ~dt_stock_ids~: a data.table with columns ~ticker~ (for EODHD API) and ~name~ (commodity name used in ledger file)
   - the API_KEY
-  - `FILE_EOD_FULL` and `FILE_EOD_PRICEHIST`: files to save the EOD data and ledger price db, respectively
-  - `gd_eod(dt_stock_ids)`: fetches and writes data
-- run this file via `Rscript commodify.R` (add it to cron if you like)
+  - ~FILE_EOD_FULL~ and ~FILE_EOD_PRICEHIST~: files to save the EOD data and ledger price db, respectively
+  - ~gd_eod(dt_stock_ids)~: fetches and writes data
+- run this file via ~Rscript commodify.R~ (add it to cron if you like)
   
 
 ** Limitations
